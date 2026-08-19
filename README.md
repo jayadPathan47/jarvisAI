@@ -1,193 +1,214 @@
 <div align="center">
-🤖 JARVIS AI
-Your Personal AI Voice Assistant for Windows
-<p>
-  <img src="https://img.shields.io/badge/Python-3.14+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/Platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows">
-  <img src="https://img.shields.io/badge/AI-Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white" alt="Gemini">
-  <img src="https://img.shields.io/badge/Voice-Whisper-412991?style=for-the-badge" alt="Whisper">
-</p>
-<p>
-  <strong>A modular, voice-controlled AI assistant designed to control your PC, understand natural language, search the web, remember conversations, and see what's on your screen.</strong>
-</p>
-<p>
-  <a href="#-features">Features</a> •
-  <a href="#-architecture">Architecture</a> •
-  <a href="#-installation">Installation</a> •
-  <a href="#-usage">Usage</a> •
-  <a href="#-roadmap">Roadmap</a>
-</p>
+JARVIS AI
+A modular, voice-first AI desktop assistant for Windows.
+Control your computer, interact with an AI brain, search the web, manage persistent memory, and analyze your screen — through natural voice commands.
+<br>
+![Python](https://img.shields.io/badge/Python-3.14%2B-3776AB?style=flat-square&logo=python&logoColor=white)
+![Windows](https://img.shields.io/badge/Platform-Windows-0078D6?style=flat-square&logo=windows&logoColor=white)
+![Gemini](https://img.shields.io/badge/AI-Gemini-8E75B2?style=flat-square&logo=google&logoColor=white)
+![Whisper](https://img.shields.io/badge/STT-Faster--Whisper-412991?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Active%20Development-orange?style=flat-square)
 </div>
 ---
-✨ What is JARVIS?
-JARVIS AI is a personal desktop voice assistant built with Python.
-The project combines:
-🎤 Speech recognition with Faster-Whisper
-🧠 AI conversations with Google Gemini
-🔊 Natural speech using Edge TTS
-⚙️ Windows automation and application control
-🌐 Web search
-👁️ Screen capture and AI vision
-🧠 Persistent local memory
-🔥 Wake-word activation with "Hey Jarvis"
-The goal is simple:
-> **Talk to your computer naturally — JARVIS handles the rest.**
+Overview
+JARVIS AI is a Python-based personal desktop assistant designed around a simple principle:
+> **Speak naturally. Let JARVIS translate intent into action.**
+The project is intentionally split into independent modules so that voice recognition, AI reasoning, memory, automation, web search, vision, and speech output can evolve without turning the application into a single monolithic script.
+Current capabilities
+Wake-word driven voice interaction
+English speech-to-text using Faster-Whisper
+AI responses through Google Gemini
+Local persistent memory
+Text-to-speech responses
+Windows application and system control
+Web search and browser actions
+Screenshot capture
+AI-powered screen analysis
+Modular command routing
 ---
-🖥️ System Overview
+Architecture
 ```text
-                         ┌──────────────────────┐
-                         │      🎤 USER         │
-                         │   "Hey Jarvis..."    │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │   🎙️ VOICE SYSTEM   │
-                         │   Microphone + STT   │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │    🔥 WAKE WORD      │
-                         │    "Hey Jarvis"      │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                  ┌─────────────────────────────────┐
-                  │          🧠 AI BRAIN            │
-                  │       Gemini + Memory           │
-                  └──────────────┬──────────────────┘
-                                 │
-              ┌──────────────────┼──────────────────┐
-              ▼                  ▼                  ▼
-      ┌──────────────┐   ┌──────────────┐   ┌──────────────┐
-      │ ⚙️ COMMANDS  │   │ 🌐 WEB SEARCH │   │ 👁️ VISION   │
-      │ PC Automation│   │ Live Search   │   │ Screen AI    │
-      └──────┬───────┘   └──────────────┘   └──────────────┘
-             │
-             ▼
-      ┌────────────────────┐
-      │ 💻 WINDOWS SYSTEM  │
-      │ Apps • Volume • PC │
-      └─────────┬──────────┘
-                │
-                ▼
-      ┌────────────────────┐
-      │ 🔊 JARVIS RESPONSE │
-      │       Edge TTS     │
-      └────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                        JARVIS AI                         │
+└───────────────────────────┬──────────────────────────────┘
+                            │
+                    ┌───────▼────────┐
+                    │  Voice Input   │
+                    │ SoundDevice +  │
+                    │ Faster-Whisper │
+                    └───────┬────────┘
+                            │
+                    ┌───────▼────────┐
+                    │   Wake Word    │
+                    │  "Hey Jarvis"  │
+                    └───────┬────────┘
+                            │
+              ┌─────────────▼─────────────┐
+              │       Command Router      │
+              └─────────────┬─────────────┘
+                            │
+       ┌────────────────────┼────────────────────┐
+       │                    │                    │
+┌──────▼──────┐      ┌──────▼──────┐      ┌──────▼──────┐
+│   Commands  │      │  AI Brain   │      │    Vision   │
+│   Windows   │      │   Gemini    │      │  Screenshot │
+│ Automation  │      │  Reasoning  │      │   Analysis  │
+└──────┬──────┘      └──────┬──────┘      └──────┬──────┘
+       │                    │                    │
+       └────────────────────┼────────────────────┘
+                            │
+                    ┌───────▼────────┐
+                    │     Memory     │
+                    │   memory.json  │
+                    └───────┬────────┘
+                            │
+                    ┌───────▼────────┐
+                    │  Voice Output  │
+                    │    Edge TTS    │
+                    └────────────────┘
 ```
 ---
-🚀 Features
-Feature	Status
-🎤 Voice input	✅
-🔥 Wake word detection	✅
-🧠 Gemini AI brain	✅
-🧠 Persistent memory	✅
-🔊 Text-to-speech	✅
-🌐 Web search	✅
-👁️ Screen vision	✅
-📸 Screenshot system	✅
-🌐 Open websites	✅
-🖥️ Open Windows apps	✅
-🔊 Volume control	✅
-🔒 Lock computer	✅
-🔄 Restart computer	✅
-⏻ Shutdown / cancel shutdown	✅
-💻 CMD / PowerShell	✅
-📝 Notepad / Calculator / Explorer	✅
-🛑 Stop command	✅
-🧩 Modular architecture	✅
-🤖 Advanced automation	🚧
-🎨 GUI dashboard	🚧
-🏠 Smart-home integration	🔮
-📱 Mobile companion app	🔮
----
-🧩 Core Modules
+Project Structure
 ```text
 jarvis-ai/
 │
-├── app.py              # 🚀 Main JARVIS loop
-├── listener.py         # 🎤 Speech recognition
-├── speaker.py          # 🔊 Text-to-speech
-├── wakeword.py         # 🔥 Wake-word detection
-├── brain.py            # 🧠 AI/Gemini brain
-├── memory.py           # 🧠 Persistent memory
-├── commands.py         # ⚙️ PC command execution
-├── web_search.py       # 🌐 Web search
-├── screenshot.py       # 📸 Screenshot capture
-├── vision.py           # 👁️ Screen analysis
-├── memory.json         # 💾 Local memory
-├── .env                # 🔐 API configuration
+├── app.py                 # Application entry point
 │
-├── test_brain.py       # 🧪 AI tests
-└── test_memory.py      # 🧪 Memory tests
+├── listener.py            # Microphone capture + speech recognition
+├── speaker.py             # Text-to-speech output
+├── wakeword.py            # Wake-word detection
+│
+├── brain.py               # AI reasoning / Gemini integration
+├── memory.py              # Persistent memory management
+├── memory.json             # Local memory store
+│
+├── commands.py             # Windows command and automation router
+├── web_search.py           # Web search integration
+├── screenshot.py           # Screenshot capture
+├── vision.py               # Screen/image analysis
+│
+├── test_brain.py           # AI integration tests
+├── test_memory.py          # Memory tests
+│
+├── .env                    # Local secrets — never commit
+├── README.md               # Project documentation
+└── .gitignore              # Git exclusions
 ```
 ---
-🛠️ Tech Stack
-<div align="center">
-Technology	Purpose
-🐍 Python	Core application
-🎙️ Faster-Whisper	Speech-to-text
-🧠 Google Gemini	AI reasoning
-🔊 Edge TTS	Voice generation
-🎧 SoundDevice	Microphone input
-🖱️ PyAutoGUI	Desktop automation
-🌐 Web Search	Internet search
-🖼️ Pillow	Screenshots/images
-💾 JSON	Local memory
-🪟 Windows APIs	System control
-</div>
+Request Lifecycle
+A typical interaction follows this pipeline:
+```text
+Microphone
+    │
+    ▼
+Audio Capture
+    │
+    ▼
+Faster-Whisper
+    │
+    ▼
+"Hey Jarvis"
+    │
+    ▼
+Wake Word Detection
+    │
+    ▼
+User Command
+    │
+    ├──► Local Command ──► Windows / Browser / Automation
+    │
+    ├──► Web Request ────► Search / Browser
+    │
+    ├──► Vision Request ─► Screenshot ─► AI Analysis
+    │
+    └──► General Query ──► Gemini ──► Response
+                                      │
+                                      ▼
+                                  Memory
+                                      │
+                                      ▼
+                                   Edge TTS
+```
+This separation keeps deterministic computer actions independent from open-ended AI responses.
 ---
-⚡ Installation
-1️⃣ Clone the repository
+Features
+Area	Capability	Status
+Voice	Microphone input	✅
+Voice	English speech recognition	✅
+Voice	Text-to-speech	✅
+Voice	Wake-word activation	✅
+AI	Gemini integration	✅
+Memory	Persistent local memory	✅
+Automation	Windows application control	✅
+Automation	Volume / lock / restart / shutdown	✅
+Browser	Open websites	✅
+Search	Web search	✅
+Vision	Screenshot capture	✅
+Vision	Screen analysis	✅
+Developer	Modular architecture	✅
+UI	Desktop dashboard	🚧
+Automation	Advanced multi-step workflows	🚧
+AI	Offline AI fallback	🚧
+Extensibility	Plugin system	🔮
+Mobile	Companion application	🔮
+---
+Technology Stack
+Component	Technology
+Language	Python
+Speech-to-text	Faster-Whisper
+AI	Google Gemini
+Text-to-speech	Edge TTS
+Audio	SoundDevice / NumPy / SciPy
+Desktop automation	PyAutoGUI
+Browser control	WebBrowser / subprocess
+Image handling	Pillow
+Memory	JSON
+Platform	Windows
+---
+Installation
+Prerequisites
+Windows 10/11
+Python 3.14+
+Working microphone
+Internet connection for Gemini/web features
+Google Gemini API key
+1. Clone the repository
 ```bash
 git clone https://github.com/jayadPathan47/jarvisAI.git
 cd jarvisAI
 ```
-2️⃣ Create a virtual environment
-```bash
-python -m venv .venv
-```
-Activate it on Windows:
+2. Create a virtual environment
+PowerShell:
 ```powershell
+python -m venv .venv
 .venv\Scripts\Activate.ps1
 ```
-Or CMD:
+Command Prompt:
 ```cmd
+python -m venv .venv
 .venv\Scripts\activate
 ```
-3️⃣ Install dependencies
+3. Install dependencies
+If `requirements.txt` exists:
 ```bash
 pip install -r requirements.txt
 ```
-If you don't have a requirements file yet:
+Otherwise, install the core dependencies:
 ```bash
 pip install sounddevice numpy scipy faster-whisper edge-tts pyautogui python-dotenv google-genai
 ```
----
-🔐 Environment Variables
-Create a `.env` file in the project root.
+4. Configure environment variables
+Create `.env` in the project root:
 ```env
-GOOGLE_API_KEY=your_google_gemini_api_key
+GOOGLE_API_KEY=your_gemini_api_key
 ```
-⚠️ Never upload `.env` to GitHub.
-Add this to `.gitignore`:
-```gitignore
-.env
-__pycache__/
-*.pyc
-input.wav
-output.mp3
-command.wav
-```
+Do not commit this file.
 ---
-▶️ Run JARVIS
-Start the assistant with:
+Running JARVIS
 ```bash
 python app.py
 ```
-You should see:
+Expected startup:
 ```text
 Starting JARVIS...
 
@@ -205,16 +226,18 @@ You: Open Chrome.
 ✅ Chrome opened
 ```
 ---
-🎙️ Example Commands
-💻 Applications
+Example Commands
+Applications
 ```text
 Hey Jarvis, open Chrome
-Hey Jarvis, open Notepad
-Hey Jarvis, open Calculator
-Hey Jarvis, open File Explorer
-Hey Jarvis, open Settings
+Open Notepad
+Open Calculator
+Open File Explorer
+Open Settings
+Open Command Prompt
+Open PowerShell
 ```
-🌐 Websites
+Web
 ```text
 Open Google
 Open YouTube
@@ -222,7 +245,7 @@ Open GitHub
 Search Python tutorials
 Search latest technology news
 ```
-🖥️ System
+System
 ```text
 Volume up
 Volume down
@@ -232,7 +255,7 @@ Restart computer
 Shutdown computer
 Cancel shutdown
 ```
-👁️ Vision
+Vision
 ```text
 What is on my screen?
 Describe my screen
@@ -240,117 +263,87 @@ Read my screen
 What do you see?
 Analyze my screen
 ```
-🛑 Control
+Session control
 ```text
 Stop Jarvis
 ```
 ---
-🧠 How the AI Pipeline Works
+Memory
+JARVIS uses a local JSON-based memory layer.
 ```text
-🎤 Voice
-   │
-   ▼
-🔥 Wake Word
-   │
-   ▼
-📝 Speech → Text
-   │
-   ▼
-🧠 Intent / AI Brain
-   │
-   ├───────────────┐
-   ▼               ▼
-⚙️ Command       💬 AI Answer
-   │               │
-   ▼               ▼
-💻 Windows       🔊 TTS
-   │               │
-   └───────┬───────┘
-           ▼
-       👤 USER
-```
----
-🧠 Memory System
-JARVIS stores useful conversation information locally.
-```text
-User
- │
- ▼
 Conversation
- │
- ▼
-Memory System
- │
- ▼
+     │
+     ▼
+Memory Manager
+     │
+     ▼
 memory.json
- │
- ▼
-Future conversations
+     │
+     ▼
+Future context
 ```
-This allows the assistant to maintain context between sessions.
-> **Privacy note:** Review the memory implementation before storing sensitive information.
+Keeping memory local makes the storage layer simple and transparent.
+Important: Do not store passwords, API keys, authentication tokens, or other sensitive secrets in `memory.json`.
 ---
-👁️ Vision System
-JARVIS can capture the current screen and send the screenshot to the vision model for analysis.
-Example:
+Vision
+The vision subsystem can capture the current desktop and send the image to the configured vision-capable AI model.
+Example flow:
 ```text
-You:
-"Jarvis, what is on my screen?"
-
-        ↓
-
-📸 Screenshot
-
-        ↓
-
-👁️ Vision Model
-
-        ↓
-
-🧠 Analysis
-
-        ↓
-
-🔊 Spoken Response
+"Jarvis, analyze my screen."
+             │
+             ▼
+      Capture Screenshot
+             │
+             ▼
+       Vision Model
+             │
+             ▼
+      Structured Analysis
+             │
+             ▼
+        Voice Response
 ```
-This can be useful for understanding:
-Applications
-Error messages
-Buttons
-Visible text
-Important UI information
+Typical use cases include identifying visible applications, reading errors, locating UI elements, and summarizing important on-screen information.
 ---
-⚙️ Command Architecture
-Commands are handled independently from the AI brain.
+Command System
+Local commands are handled deterministically wherever possible.
+Example:
 ```python
 execute_command("open chrome")
 ```
-The command system then maps the request to a Windows action.
-This separation makes JARVIS easier to extend without modifying the entire application.
+The command router checks the normalized request and maps it to a specific action.
+This is preferable to allowing an AI model to directly execute arbitrary shell commands.
+Design principle
+```text
+Natural Language
+       │
+       ▼
+Intent Detection
+       │
+       ▼
+Validated Command
+       │
+       ▼
+Specific Windows Action
+```
 ---
-🧪 Testing
-Test the AI brain:
+Development
+Run the individual test modules when making changes:
 ```bash
 python test_brain.py
-```
-Test memory:
-```bash
 python test_memory.py
 ```
-Test a command directly:
+Test a command without starting the complete assistant:
 ```bash
 python -c "from commands import execute_command; execute_command('open chrome')"
 ```
----
-🐛 Troubleshooting
-Microphone not detected
-Check available audio devices:
+For debugging microphone input:
 ```bash
 python -c "import sounddevice as sd; print(sd.query_devices())"
 ```
-Then verify that Windows has microphone permission enabled.
-Whisper is slow
-The project currently uses a CPU configuration:
+---
+Performance Notes
+JARVIS currently uses a CPU-oriented Faster-Whisper configuration:
 ```python
 WhisperModel(
     "base",
@@ -358,118 +351,143 @@ WhisperModel(
     compute_type="int8"
 )
 ```
-For better performance, use a smaller Whisper model if your hardware is limited.
-Chrome does not open
-Check whether Chrome exists at one of these locations:
-```text
-C:\Program Files\Google\Chrome\Application\chrome.exe
-C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
-```
-Gemini API error
-Check:
-```text
-GOOGLE_API_KEY
-```
-and make sure the model configured in `brain.py` / `vision.py` is currently available for your API account.
+Recognition latency depends on CPU performance, recording duration, model size, microphone quality, and background noise.
+For lower latency on weaker hardware, a smaller speech model can be considered. For higher accuracy, a larger model may be appropriate if the hardware can support it.
 ---
-🗺️ Roadmap
-Phase 1 — Foundation
-[x] Python core
+Security
+JARVIS has access to system-level functionality. Treat it as a privileged local application.
+Recommended safeguards:
+Keep API keys in `.env`
+Never commit `.env`
+Validate destructive commands
+Require confirmation for shutdown/restart operations
+Avoid executing arbitrary AI-generated shell commands
+Keep logs of sensitive automation actions
+Restrict remote access unless authentication is implemented
+Review memory contents before sharing the repository
+Example `.gitignore`:
+```gitignore
+.env
+.venv/
+__pycache__/
+*.pyc
+
+input.wav
+output.mp3
+command.wav
+
+memory.json
+```
+---
+Roadmap
+Phase 1 — Core Assistant
 [x] Voice input
+[x] Speech recognition
 [x] Text-to-speech
 [x] Wake word
-[x] Basic commands
+[x] Basic Windows commands
 Phase 2 — Intelligence
 [x] Gemini AI
-[x] Memory
+[x] Persistent memory
 [x] Web search
-[x] Screen vision
+[x] Vision integration
 Phase 3 — Automation
-[ ] Application launcher
+[ ] Application discovery
+[ ] File management
 [ ] Keyboard automation
 [ ] Mouse automation
-[ ] File management
-[ ] Process manager
-[ ] Smart command routing
-[ ] Multi-step task execution
-Phase 4 — JARVIS UI
+[ ] Process management
+[ ] Multi-step workflows
+[ ] Better intent routing
+Phase 4 — User Interface
 [ ] Futuristic desktop dashboard
-[ ] Animated waveform
-[ ] Live system stats
-[ ] AI activity panel
+[ ] Live audio waveform
 [ ] Command history
-[ ] Memory viewer
+[ ] AI activity stream
+[ ] System monitoring
+[ ] Memory management UI
 [ ] Settings panel
-Phase 5 — Advanced JARVIS
-[ ] Offline AI mode
-[ ] Long-term memory
-[ ] Multi-agent architecture
-[ ] Smart home integration
+Phase 5 — Advanced Platform
+[ ] Offline AI fallback
+[ ] Plugin architecture
+[ ] Long-term contextual memory
+[ ] Smart-home integration
 [ ] Mobile companion
-[ ] Personalized automation
-[ ] Plugin system
+[ ] User authentication
+[ ] Configurable automation policies
 ---
-🎨 Future UI Concept
+UI Direction
+The planned interface follows a restrained futuristic style rather than a purely decorative "movie UI":
 ```text
-╔══════════════════════════════════════════════════════╗
-║                    J A R V I S                       ║
-║                                                      ║
-║              ◉  SYSTEM ONLINE  ◉                     ║
-║                                                      ║
-║                 ╭───────────╮                        ║
-║              ╭──│  ◉ ◉ ◉   │──╮                     ║
-║              │  │   JARVIS  │  │                     ║
-║              ╰──│  ◉ ◉ ◉   │──╯                     ║
-║                 ╰───────────╯                        ║
-║                                                      ║
-║   🎤 Listening...                                    ║
-║                                                      ║
-║   USER     →  Open Chrome                            ║
-║   JARVIS   →  Opening Chrome...                     ║
-║                                                      ║
-║   CPU ███████░░░  72%      RAM █████░░░░░  51%       ║
-║                                                      ║
-╚══════════════════════════════════════════════════════╝
+┌─────────────────────────────────────────────────────┐
+│  JARVIS                              SYSTEM ONLINE ● │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│                 ┌──────────────┐                    │
+│                 │      ◉       │                    │
+│                 │    JARVIS    │                    │
+│                 │      ◉       │                    │
+│                 └──────────────┘                    │
+│                                                     │
+│  STATUS                                             │
+│  Listening...                                       │
+│                                                     │
+│  COMMAND                                            │
+│  "Open Chrome"                                      │
+│                                                     │
+│  ACTIVITY                                           │
+│  ✓ Wake word detected                               │
+│  ✓ Command recognized                               │
+│  ✓ Chrome launched                                 │
+│                                                     │
+│  CPU  ███████░░░   RAM  █████░░░░░                  │
+└─────────────────────────────────────────────────────┘
 ```
+The UI is planned as a monitoring and control layer over the existing modular backend.
 ---
-🔒 Security
-JARVIS can execute powerful operating-system commands.
-Do not blindly execute AI-generated commands.
-Recommended protections:
-Confirm destructive commands
-Keep API keys outside source control
-Validate file paths
-Restrict dangerous system commands
-Log executed actions
-Add authentication before remote control
-Never expose the assistant directly to the public internet
----
-🤝 Contributing
+Contributing
 Contributions are welcome.
+Workflow
 ```bash
-git checkout -b feature/my-feature
-git add .
-git commit -m "Add my feature"
-git push origin feature/my-feature
+git checkout -b feature/your-feature
 ```
-Then open a Pull Request.
+Make your changes, test them, then:
+```bash
+git add .
+git commit -m "feat: add your feature"
+git push origin feature/your-feature
+```
+Open a Pull Request with:
+What changed
+Why it changed
+How it was tested
+Any known limitations
+Commit style
+Recommended:
+```text
+feat: add application launcher
+fix: improve microphone handling
+refactor: separate command routing
+docs: update installation guide
+test: add memory regression tests
+```
 ---
-⭐ Support the Project
-If you like this project:
-⭐ Star the repository
-🍴 Fork it
-🐛 Report bugs
-💡 Suggest features
-🤝 Contribute
+Project Principles
+JARVIS is being developed around a few engineering principles:
+Modular — each subsystem should have a clear responsibility.
+Deterministic — computer-control actions should be validated and predictable.
+Extensible — new capabilities should be addable without rewriting the core loop.
+Observable — important actions and failures should be easy to diagnose.
+Privacy-aware — secrets and local memory should remain outside source control.
 ---
-📜 License
-This project is intended for educational and personal use.
-Add an appropriate open-source license to the repository before publishing it as a reusable open-source project.
+License
+No open-source license has been selected yet.
+If this repository is intended for public reuse, add a license file such as MIT before accepting external contributions.
 ---
 <div align="center">
-🤖 JARVIS AI
-"Your voice. Your computer. Your AI."
-Built with ❤️ and Python.
+JARVIS AI
+Voice → Intent → Action → Intelligence
+Built with Python.
 <br>
-⭐ If JARVIS helped you, give the repository a star! ⭐
+If you find the project useful, consider giving it a ⭐.
 </div>
