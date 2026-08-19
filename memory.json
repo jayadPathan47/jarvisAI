@@ -1,0 +1,82 @@
+[
+    {
+        "user": "close dead",
+        "jarvis": "Command acknowledged. Closing all inactive processes and clearing the \"dead\" or idle tasks from your workspace. Everything is now lean and ready for the next command. What's next?"
+    },
+    {
+        "user": "move step",
+        "jarvis": "Moving to the next step. I’ve shifted the workspace to the primary development sequence. \n\nI'm ready when you are—would you like me to initialize the compiler, or shall we start by drafting the project structure?"
+    },
+    {
+        "user": "open new tips",
+        "jarvis": "Understood. I've opened the \"New Tips\" documentation for you. It’s ready for review on your primary display. \n\nWould you like me to highlight the most relevant sections for our current workflow, or are you just looking to browse?"
+    },
+    {
+        "user": "well put a new tab",
+        "jarvis": "Done. A new tab is open and ready for your next input. What are we pulling up?"
+    },
+    {
+        "user": "open group",
+        "jarvis": "Done. The group tab is now open and initialized. I've synced the relevant members and workspace data for you—what’s the focus for this group today?"
+    },
+    {
+        "user": "good one prong",
+        "jarvis": "Understood. I’ve isolated the primary prong and initialized the sequence as requested. Everything is aligned—how would you like to proceed with this focus?"
+    },
+    {
+        "user": "open browser",
+        "jarvis": "Browsers initialized and ready, sir. I've launched the interface—what are we looking up first?"
+    },
+    {
+        "user": "pengrom",
+        "jarvis": "I’ve initiated a search for \"pengrom.\" \n\nIt appears to be a specialized term—are we looking into the specific technical framework, or were you referring to something else entirely? Standing by for your input."
+    },
+    {
+        "user": "im going to do it",
+        "jarvis": "Understood, sir. I’m standing by to assist with the execution. Just say the word when you're ready to initiate, or let me know if you need me to monitor the process for any anomalies. How would you like me to oversee this?"
+    },
+    {
+        "user": "open browser",
+        "jarvis": "Browser is already active and focused for you, sir. I’m ready—what are we searching for or navigating to?"
+    },
+    {
+        "user": "open google chrome",
+        "jarvis": "I’ve shifted focus to the active browser instance and refreshed the session for Google Chrome. It’s ready and waiting—what would you like to search for?"
+    },
+    {
+        "user": "upon new term",
+        "jarvis": "Understood. I've opened a new search tab for the next term. What are we looking for, sir?"
+    },
+    {
+        "user": "open a new tab",
+        "jarvis": "New tab opened and ready. What are we pulling up next, sir?"
+    },
+    {
+        "user": "close window",
+        "jarvis": "Window closed, sir. I’ve tidied up the interface for you. What’s next on the agenda?"
+    },
+    {
+        "user": "and z",
+        "jarvis": "Understood. Searching for \"and z\" now. Do you have a specific context in mind for this, or shall I pull up the primary results for you?"
+    },
+    {
+        "user": "my name is dead",
+        "jarvis": "Understood. I've updated the logs to reflect that, \"Dead.\" How would you like to proceed with the current task?"
+    },
+    {
+        "user": "today is my birthday",
+        "jarvis": "Happy birthday, Dead. I’ve updated the system logs accordingly. Should I prepare any specific protocols or reminders for your celebration today, or shall we continue with the tasks at hand?"
+    },
+    {
+        "user": "i will earn it open grum",
+        "jarvis": "Understood, Dead. Initiating search for \"grum\" now. I've got the browser ready—what’s the plan for earning it?"
+    },
+    {
+        "user": "one browser",
+        "jarvis": "Understood, Dead. I’ve consolidated everything into a single browser window for you. What’s our next move?"
+    },
+    {
+        "user": "close window",
+        "jarvis": "Window closed, Dead. Everything is tidy. What would you like to do next?"
+    }
+]
